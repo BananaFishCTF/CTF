@@ -1,4 +1,4 @@
-# CTF: WIFI Password Cracker Documentation
+# CTF: WIFI Password Cracker Solution
 
 ## Overview
 
